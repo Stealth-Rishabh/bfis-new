@@ -154,21 +154,21 @@ import eventThirty3 from "@/assets/events/5Dec2024/img3.jpg";
 import eventThirty4 from "@/assets/events/5Dec2024/img4.jpg";
 import eventThirty5 from "@/assets/events/5Dec2024/img5.jpg";
 
-import eventThirtyOne1 from "@/assets/events/10_11thDec2024/img1.JPG";
-import eventThirtyOne2 from "@/assets/events/10_11thDec2024/img2.JPG";
-import eventThirtyOne3 from "@/assets/events/10_11thDec2024/img3.JPG";
-import eventThirtyOne4 from "@/assets/events/10_11thDec2024/img4.JPG";
-import eventThirtyOne5 from "@/assets/events/10_11thDec2024/img5.JPG";
-import eventThirtyOne6 from "@/assets/events/10_11thDec2024/img6.JPG";
-import eventThirtyOne7 from "@/assets/events/10_11thDec2024/img7.JPG";
-import eventThirtyOne8 from "@/assets/events/10_11thDec2024/img8.JPG";
-import eventThirtyOne9 from "@/assets/events/10_11thDec2024/img9.JPG";
-import eventThirtyOne10 from "@/assets/events/10_11thDec2024/img10.JPG";
-import eventThirtyOne11 from "@/assets/events/10_11thDec2024/img11.JPG";
-import eventThirtyOne12 from "@/assets/events/10_11thDec2024/img12.JPG";
-import eventThirtyOne13 from "@/assets/events/10_11thDec2024/img13.JPG";
-import eventThirtyOne14 from "@/assets/events/10_11thDec2024/img14.JPG";
-import eventThirtyOne15 from "@/assets/events/10_11thDec2024/img15.JPG";
+import eventThirtyOne1 from "@/assets/events/10_11Dec2024/img1.jpg";
+import eventThirtyOne2 from "@/assets/events/10_11Dec2024/img2.jpg";
+import eventThirtyOne3 from "@/assets/events/10_11Dec2024/img3.jpg";
+import eventThirtyOne4 from "@/assets/events/10_11Dec2024/img4.jpg";
+import eventThirtyOne5 from "@/assets/events/10_11Dec2024/img5.jpg";
+import eventThirtyOne6 from "@/assets/events/10_11Dec2024/img6.jpg";
+import eventThirtyOne7 from "@/assets/events/10_11Dec2024/img7.jpg";
+import eventThirtyOne8 from "@/assets/events/10_11Dec2024/img8.jpg";
+import eventThirtyOne9 from "@/assets/events/10_11Dec2024/img9.jpg";
+import eventThirtyOne10 from "@/assets/events/10_11Dec2024/img10.jpg";
+import eventThirtyOne11 from "@/assets/events/10_11Dec2024/img11.jpg";
+import eventThirtyOne12 from "@/assets/events/10_11Dec2024/img12.jpg";
+import eventThirtyOne13 from "@/assets/events/10_11Dec2024/img13.jpg";
+import eventThirtyOne14 from "@/assets/events/10_11Dec2024/img14.jpg";
+import eventThirtyOne15 from "@/assets/events/10_11Dec2024/img15.jpg";
 
 import eventThirtyTwo1 from "@/assets/events/19Dec2024/img1.jpg";
 import eventThirtyTwo2 from "@/assets/events/19Dec2024/img2.jpg";
@@ -223,7 +223,7 @@ import eventThirtyEight5 from "@/assets/events/3May2024/img5.jpg";
 import eventThirtyNine1 from "@/assets/events/28Apr2024/img1.jpg";
 import eventThirtyNine2 from "@/assets/events/28Apr2024/img2.jpg";
 import eventThirtyNine3 from "@/assets/events/28Apr2024/img3.jpg";
-import eventThirtyNine4 from "@/assets/events/28Apr2024/img4.jpg";    
+import eventThirtyNine4 from "@/assets/events/28Apr2024/img4.jpg";
 
 import eventForty1 from "@/assets/events/26Apr2024/img1.jpg";
 import eventForty2 from "@/assets/events/26Apr2024/img2.jpg";
@@ -720,13 +720,24 @@ const events = [
     id: 38,
     name: "POTTER'S WHEEL KINDERGARTEN  3May 2024",
     thumbnail: eventThirtyEight1,
-    images: [eventThirtyEight1, eventThirtyEight2, eventThirtyEight3, eventThirtyEight4, eventThirtyEight5],
+    images: [
+      eventThirtyEight1,
+      eventThirtyEight2,
+      eventThirtyEight3,
+      eventThirtyEight4,
+      eventThirtyEight5,
+    ],
   },
   {
     id: 39,
     name: "KHEERGANGA TREK 28 April 2024",
     thumbnail: eventThirtyNine4,
-    images: [eventThirtyNine1, eventThirtyNine2, eventThirtyNine3, eventThirtyNine4],
+    images: [
+      eventThirtyNine1,
+      eventThirtyNine2,
+      eventThirtyNine3,
+      eventThirtyNine4,
+    ],
   },
   {
     id: 40,
@@ -738,31 +749,70 @@ const events = [
     id: 41,
     name: "collaboration with four esteemed foreign universities 23 April 2024",
     thumbnail: eventFortyFive3,
-    images: [eventFortyFive1, eventFortyFive2, eventFortyFive3, eventFortyFive4, eventFortyFive5, eventFortyFive6],
+    images: [
+      eventFortyFive1,
+      eventFortyFive2,
+      eventFortyFive3,
+      eventFortyFive4,
+      eventFortyFive5,
+      eventFortyFive6,
+    ],
   },
   {
     id: 42,
     name: "INTERACT CLUB INSTALLATION 12 April 2024",
     thumbnail: eventFortySix3,
-    images: [eventFortySix1, eventFortySix2, eventFortySix3, eventFortySix4, eventFortySix5],
+    images: [
+      eventFortySix1,
+      eventFortySix2,
+      eventFortySix3,
+      eventFortySix4,
+      eventFortySix5,
+    ],
   },
   {
     id: 43,
     name: "Music & Dance Practice 23 Feb 2024",
     thumbnail: eventFortySeven1,
-    images: [eventFortySeven1, eventFortySeven2, eventFortySeven3, eventFortySeven4, eventFortySeven5],
+    images: [
+      eventFortySeven1,
+      eventFortySeven2,
+      eventFortySeven3,
+      eventFortySeven4,
+      eventFortySeven5,
+    ],
   },
   {
     id: 44,
     name: "Grade 12 Farewell 10 Feb 2024",
     thumbnail: eventFortyEight8,
-    images: [eventFortyEight1, eventFortyEight2, eventFortyEight3, eventFortyEight4, eventFortyEight5, eventFortyEight6, eventFortyEight7, eventFortyEight8, eventFortyEight9],
+    images: [
+      eventFortyEight1,
+      eventFortyEight2,
+      eventFortyEight3,
+      eventFortyEight4,
+      eventFortyEight5,
+      eventFortyEight6,
+      eventFortyEight7,
+      eventFortyEight8,
+      eventFortyEight9,
+    ],
   },
   {
     id: 45,
     name: "Robotics Lab Inauguration 9 Feb 2024",
     thumbnail: eventFortyNine4,
-    images: [eventFortyNine1, eventFortyNine2, eventFortyNine3, eventFortyNine4, eventFortyNine5, eventFortyNine6, eventFortyNine7, eventFortyNine8, eventFortyNine9],
+    images: [
+      eventFortyNine1,
+      eventFortyNine2,
+      eventFortyNine3,
+      eventFortyNine4,
+      eventFortyNine5,
+      eventFortyNine6,
+      eventFortyNine7,
+      eventFortyNine8,
+      eventFortyNine9,
+    ],
   },
   {
     id: 46,
@@ -786,31 +836,73 @@ const events = [
     id: 49,
     name: "Sportsperanza 12-14 Dec 2023",
     thumbnail: eventFiftySeven3,
-    images: [eventFiftySeven1, eventFiftySeven2, eventFiftySeven3, eventFiftySeven4, eventFiftySeven5, eventFiftySeven6, eventFiftySeven7, eventFiftySeven8, eventFiftySeven9, eventFiftySeven10, eventFiftySeven11, eventFiftySeven12],
+    images: [
+      eventFiftySeven1,
+      eventFiftySeven2,
+      eventFiftySeven3,
+      eventFiftySeven4,
+      eventFiftySeven5,
+      eventFiftySeven6,
+      eventFiftySeven7,
+      eventFiftySeven8,
+      eventFiftySeven9,
+      eventFiftySeven10,
+      eventFiftySeven11,
+      eventFiftySeven12,
+    ],
   },
   {
     id: 50,
     name: "Gurupurab Celebration 25 Nov 2023",
     thumbnail: eventFiftyEight3,
-    images: [eventFiftyEight1, eventFiftyEight2, eventFiftyEight3, eventFiftyEight4],
+    images: [
+      eventFiftyEight1,
+      eventFiftyEight2,
+      eventFiftyEight3,
+      eventFiftyEight4,
+    ],
   },
   {
     id: 51,
     name: "Roller Skating Competition winners Nov 2023",
     thumbnail: eventFiftyNine3,
-    images: [eventFiftyNine1, eventFiftyNine2, eventFiftyNine3, eventFiftyNine4],
+    images: [
+      eventFiftyNine1,
+      eventFiftyNine2,
+      eventFiftyNine3,
+      eventFiftyNine4,
+    ],
   },
   {
     id: 52,
     name: "Diwali Celebration 10 Nov 2023",
     thumbnail: eventSixty1,
-    images: [eventSixty1, eventSixty2, eventSixty3, eventSixty4, eventSixty5, eventSixty6],
+    images: [
+      eventSixty1,
+      eventSixty2,
+      eventSixty3,
+      eventSixty4,
+      eventSixty5,
+      eventSixty6,
+    ],
   },
   {
     id: 53,
     name: "Opinionator 04 Nov 2023",
     thumbnail: eventSixtyOne8,
-    images: [eventSixtyOne1, eventSixtyOne2, eventSixtyOne3, eventSixtyOne4, eventSixtyOne5, eventSixtyOne6, eventSixtyOne7, eventSixtyOne8, eventSixtyOne9, eventSixtyOne10, eventSixtyOne11],
+    images: [
+      eventSixtyOne1,
+      eventSixtyOne2,
+      eventSixtyOne3,
+      eventSixtyOne4,
+      eventSixtyOne5,
+      eventSixtyOne6,
+      eventSixtyOne7,
+      eventSixtyOne8,
+      eventSixtyOne9,
+      eventSixtyOne10,
+      eventSixtyOne11,
+    ],
   },
   // Additional events as required
 ];
