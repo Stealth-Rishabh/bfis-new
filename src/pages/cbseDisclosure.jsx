@@ -10,7 +10,7 @@ import staffImage from "../assets/images/staff.jpg";
 import glimpseImage from "../assets/images/infra.jpg";
 import inspectionReport from "@/assets/pdf/cbseDisclosure/Inspection-Report-SARAS.pdf";
 import cbseAffiliation from "@/assets/pdf/cbseDisclosure/CBSE-AFFILIATION.pdf";
-import trustDeed from "@/assets/pdf/cbseDisclosure/Trust-Deed.pdf";
+import trustDeed from "@/assets/pdf/cbseDisclosure/trustDeed.pdf";
 import noc from "@/assets/pdf/cbseDisclosure/NOC.pdf";
 import rte from "@/assets/pdf/cbseDisclosure/RTE.pdf";
 import buildingSafety from "@/assets/pdf/cbseDisclosure/building-safet-certificate.pdf";
