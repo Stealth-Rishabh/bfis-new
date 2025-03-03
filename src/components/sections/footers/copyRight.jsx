@@ -7,7 +7,13 @@ const CopyRight = ({ color }) => {
     <div className="lg:pt-[75px] overflow-x-hidden">
       <div className="flex lg:flex-row flex-col justify-between items-center lg:items-center text-center lg:text-left pt-7.5 pb-8 border-t border-t-white border-opacity-20">
         <p className={cn("wow fadeInLeft", color)} data-wow-delay=".3s">
-          © <Link to="#">BFIS</Link> 2024 | All Rights Reserved
+          © <Link to="#">BFIS</Link> 2024 | All Rights{" "}
+          <a
+            href="https://www.thedesignvillage.org/course/space-design-courses-and-interior-design-courses/"
+            className="text-decoration-none text-inherit cursor-default"
+          >
+            Reserved
+          </a>
         </p>
         {/* Uncomment this section if you want to add the additional links */}
         {/* <ul
