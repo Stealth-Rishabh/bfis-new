@@ -37,6 +37,7 @@ import AdminPanel from "@/admin/AdminPanel";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer";
 import ThankYou from "../pages/thankyou";
+import NewsCoverage from "../pages/NewsCoverage";
 
 // Sidebar links for About section
 const aboutSidebarLinks = [
@@ -455,6 +456,23 @@ export const router = createBrowserRouter(
             </>
           ),
         },
+
+        // News Coverage Route
+        {
+          path: "/news-coverage",
+          element: (
+            <>
+              <Helmet>
+                <title>News Coverage | BFIS Chandigarh</title>
+                <meta
+                  name="description"
+                  content="Discover how Brookfield International School is making headlines and impacting our community through excellence in education and innovative programs."
+                />
+              </Helmet>
+              <NewsCoverage />
+            </>
+          ),
+        },
       ],
     },
   ],
@@ -621,6 +639,23 @@ export const hashRouter = createHashRouter(
             ) : (
               <Navigate to="/login" replace />
             ),
+        },
+
+        // News Coverage Route
+        {
+          path: "/news-coverage",
+          element: (
+            <>
+              <Helmet>
+                <title>News Coverage | BFIS Chandigarh</title>
+                <meta
+                  name="description"
+                  content="Discover how Brookfield International School is making headlines and impacting our community through excellence in education and innovative programs."
+                />
+              </Helmet>
+              <NewsCoverage />
+            </>
+          ),
         },
 
         // Catch-All Route for 404

@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/popover";
 import { format } from "date-fns";
 import { CalendarIcon, Upload, X } from "lucide-react";
-import axios from "axios";
+import { toast } from "sonner";
 
 export default function EventForm() {
   const [title, setTitle] = useState("");
@@ -21,55 +21,108 @@ export default function EventForm() {
   const [featureImage, setFeatureImage] = useState(null);
   const [eventImages, setEventImages] = useState([]);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFeatureImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("Feature image must be less than 5MB");
+        return;
+      }
+      if (!file.type.startsWith("image/")) {
+        toast.error("Please upload an image file");
+        return;
+      }
       setFeatureImage(file);
     }
   };
 
   const handleEventImagesChange = (e) => {
     const files = Array.from(e.target.files);
-    setEventImages(files);
+
+    // Check if adding new files would exceed the 50 image limit
+    if (eventImages.length + files.length > 50) {
+      toast.error("You can only upload up to 50 images in total");
+      return;
+    }
+
+    const validFiles = files.filter((file) => {
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error(`${file.name} is too large (max 5MB)`);
+        return false;
+      }
+      if (!file.type.startsWith("image/")) {
+        toast.error(`${file.name} is not an image file`);
+        return false;
+      }
+      return true;
+    });
+
+    // Show warning when approaching the limit
+    if (eventImages.length + validFiles.length >= 40) {
+      toast.warning(
+        `You have ${
+          50 - (eventImages.length + validFiles.length)
+        } slots remaining`
+      );
+    }
+
+    setEventImages((prev) => [...prev, ...validFiles]);
   };
 
   const removeEventImage = (index) => {
     setEventImages((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const resetForm = () => {
+    setTitle("");
+    setDate(new Date());
+    setFeatureImage(null);
+    setEventImages([]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("event_date", date.toISOString().split("T")[0]);
-
-    if (featureImage) {
-      formData.append("feature_image", featureImage);
+    if (!title.trim()) {
+      toast.error("Please enter an event title");
+      setIsSubmitting(false);
+      return;
     }
 
-    eventImages.forEach((image) => {
-      formData.append("event_images", image);
-    });
+    if (!featureImage) {
+      toast.error("Please upload a feature image");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/events",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log("Event created:", response.data);
-      setTitle("");
-      setDate(new Date());
-      setFeatureImage(null);
-      setEventImages([]);
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("event_date", date.toISOString().split("T")[0]);
+      formData.append("feature_image", featureImage);
+      eventImages.forEach((file) => {
+        formData.append("event_images", file);
+      });
+
+      const response = await fetch("/api/upload-event", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to upload event");
+      }
+
+      toast.success("Event created successfully!");
+      resetForm();
     } catch (error) {
-      console.error("Error creating event:", error);
+      console.error("Error:", error);
+      toast.error("Failed to create event");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -92,6 +145,7 @@ export default function EventForm() {
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter event title"
                 required
+                disabled={isSubmitting}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
               />
             </div>
@@ -104,6 +158,7 @@ export default function EventForm() {
                   <Button
                     variant="outline"
                     className="w-full h-10 justify-start text-left font-normal bg-white text-black"
+                    disabled={isSubmitting}
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {date ? format(date, "PPP") : "Select date"}
@@ -134,12 +189,18 @@ export default function EventForm() {
                   className="hidden"
                   accept="image/*"
                   onChange={handleFeatureImageChange}
+                  disabled={isSubmitting}
                 />
-                <Label htmlFor="featureImage" className="cursor-pointer">
+                <Label
+                  htmlFor="featureImage"
+                  className={`cursor-pointer ${
+                    isSubmitting ? "opacity-50" : ""
+                  }`}
+                >
                   <div className="flex flex-col items-center gap-2">
                     <Upload className="h-8 w-8 text-gray-400" />
                     <span className="text-sm text-gray-600">
-                      Upload feature image
+                      Upload feature image (max 10MB)
                     </span>
                   </div>
                 </Label>
@@ -154,6 +215,7 @@ export default function EventForm() {
                       type="button"
                       onClick={() => setFeatureImage(null)}
                       className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
+                      disabled={isSubmitting}
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -164,7 +226,7 @@ export default function EventForm() {
 
             {/* Event Images Upload */}
             <div className="space-y-2">
-              <Label>Event Images</Label>
+              <Label>Event Images (Max 50)</Label>
               <div className="border-2 border-dashed border-gray-200 rounded-lg p-4">
                 <input
                   type="file"
@@ -173,12 +235,23 @@ export default function EventForm() {
                   accept="image/*"
                   multiple
                   onChange={handleEventImagesChange}
+                  disabled={isSubmitting || eventImages.length >= 50}
                 />
-                <Label htmlFor="eventImages" className="cursor-pointer">
+                <Label
+                  htmlFor="eventImages"
+                  className={`cursor-pointer ${
+                    isSubmitting || eventImages.length >= 50 ? "opacity-50" : ""
+                  }`}
+                >
                   <div className="flex flex-col items-center gap-2">
                     <Upload className="h-8 w-8 text-gray-400" />
                     <span className="text-sm text-gray-600">
-                      Upload event images
+                      Upload event images (max 5MB each)
+                      {eventImages.length > 0 && (
+                        <span className="block mt-1">
+                          {eventImages.length}/50 images uploaded
+                        </span>
+                      )}
                     </span>
                   </div>
                 </Label>
@@ -196,6 +269,7 @@ export default function EventForm() {
                         type="button"
                         onClick={() => removeEventImage(index)}
                         className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
+                        disabled={isSubmitting}
                       >
                         <X className="h-4 w-4" />
                       </button>
@@ -208,9 +282,10 @@ export default function EventForm() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full h-10 bg-[#0F172A] hover:bg-[#1E293B] text-white"
+              className="w-full h-10 bg-[#0F172A] hover:bg-[#1E293B] text-white disabled:opacity-50"
+              disabled={isSubmitting}
             >
-              Create Event
+              {isSubmitting ? "Creating Event..." : "Create Event"}
             </Button>
           </CardContent>
         </Card>

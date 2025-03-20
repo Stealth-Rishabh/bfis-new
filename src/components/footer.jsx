@@ -120,14 +120,14 @@ const Footer = () => {
                   Fee Structure
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   to="/blog"
                   className="text-white transition-all duration-500 hover:ml-[5px] hover:text-red-400"
                 >
                   Blog
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </SlideUp>
 

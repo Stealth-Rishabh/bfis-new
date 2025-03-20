@@ -39,6 +39,16 @@ const AdminPanel = () => {
           Gallery
         </Button>
         <Button
+          onClick={() => setActiveTab("gallery")}
+          className={`w-full h-10 mb-2 px-3 py-2 text-base text-white ${
+            activeTab === "gallery"
+              ? "bg-[#242B3C]"
+              : "bg-[#121F3D] hover:bg-[#242B3C]"
+          } transition-colors`}
+        >
+          News Coverage
+        </Button>
+        <Button
           onClick={() => {
             localStorage.removeItem("isAuthenticated");
             window.location.href = "/login";

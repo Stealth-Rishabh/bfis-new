@@ -19,19 +19,26 @@ export default function Navbar() {
     { name: "Programs", path: "/program" },
     { name: "Admissions", path: "/admission" },
     { name: "Glimpse", path: "/glimpse" },
-    { name: "Events", path: "/events" },
+    {
+      name: "Highlights",
+      path: "/highlights",
+      dropdown: [
+        { name: "Events", path: "/events" },
+        // { name: "News Coverage", path: "/news-coverage" },
+      ],
+    },
     { name: "Contact Us", path: "/contact-us" },
   ];
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
   const location = useLocation();
 
   // Check if any dropdown link is active
   const isDropdownActive = (dropdown) =>
     dropdown?.some((item) => location.pathname.startsWith(item.path));
 
-  const handleMouseEnter = () => setDropdownOpen(true);
-  const handleMouseLeave = () => setDropdownOpen(false);
+  const handleMouseEnter = (linkName) => setOpenDropdown(linkName);
+  const handleMouseLeave = () => setOpenDropdown(null);
 
   return (
     <div className="px-4 py-4 bg-red-600 shadow-lg relative z-50">
@@ -55,7 +62,7 @@ export default function Navbar() {
                 <li
                   key={link.name}
                   className="relative group"
-                  onMouseEnter={handleMouseEnter}
+                  onMouseEnter={() => handleMouseEnter(link.name)}
                   onMouseLeave={handleMouseLeave}
                 >
                   <NavLink
@@ -68,7 +75,7 @@ export default function Navbar() {
                   >
                     {link.name}
                   </NavLink>
-                  {dropdownOpen && (
+                  {openDropdown === link.name && (
                     <ul className="absolute left-0 mt-2 bg-red-900 text-white shadow-lg rounded py-2 w-48 z-50">
                       {link.dropdown.map((dropdownItem) => (
                         <li key={dropdownItem.name}>
