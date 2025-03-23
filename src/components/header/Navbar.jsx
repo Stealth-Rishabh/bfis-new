@@ -21,7 +21,7 @@ export default function Navbar() {
     { name: "Glimpse", path: "/glimpse" },
     {
       name: "Highlights",
-      path: "/highlights",
+      path: "/events",
       dropdown: [
         { name: "Events", path: "/events" },
         // { name: "News Coverage", path: "/news-coverage" },

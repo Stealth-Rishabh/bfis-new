@@ -107,20 +107,22 @@ export default function EventForm() {
         formData.append("event_images", file);
       });
 
-      const response = await fetch("/api/upload-event", {
+      const response = await fetch("/api/events", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error("Failed to upload event");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to upload event");
       }
 
+      const data = await response.json();
       toast.success("Event created successfully!");
       resetForm();
     } catch (error) {
       console.error("Error:", error);
-      toast.error("Failed to create event");
+      toast.error(error.message || "Failed to create event");
     } finally {
       setIsSubmitting(false);
     }

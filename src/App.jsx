@@ -51,13 +51,6 @@ const App = () => {
         }}
       >
         <RouterProvider router={router} />
-        <button onClick={handleOpenModal}>Contact Us</button>
-        {isModalVisible && (
-          <ContactFormModal
-            isVisible={isModalVisible}
-            onClose={handleCloseModal}
-          />
-        )}
       </div>
     </HelmetProvider>
   );

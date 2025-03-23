@@ -71,9 +71,7 @@ export default function EventsGallery() {
     const fetchEvents = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          "https://www.bfis.in/api/gallery-events"
-        );
+        const response = await axios.get("/api/gallery-events");
 
         // Sort events by date in descending order (latest first)
         const sortedEvents = response.data.events.sort((a, b) => {
@@ -180,7 +178,7 @@ export default function EventsGallery() {
                 <CardContent className="p-4 flex flex-col flex-grow">
                   <div className="flex-grow">
                     <img
-                      src={`https://www.bfis.in${event.thumbnail}`}
+                      src={`/api/uploads/${event.thumbnail}`}
                       alt={event.name}
                       className="w-full h-48 object-cover rounded-md mb-2"
                     />
@@ -221,7 +219,7 @@ export default function EventsGallery() {
               {selectedEvent.images.map((image, index) => (
                 <img
                   key={image}
-                  src={`https://www.bfis.in${image}`}
+                  src={`/api/uploads/${image}`}
                   alt={`${selectedEvent.name} - Image`}
                   className="w-full h-48 object-cover rounded-md cursor-pointer"
                   onClick={() => openLightbox(index)}
@@ -249,16 +247,10 @@ export default function EventsGallery() {
               &#10094;
             </button>
             <img
-              src={`https://www.bfis.in${selectedEvent.images[lightboxIndex]}`}
+              src={`/api/uploads/${selectedEvent.images[lightboxIndex]}`}
               alt={`${selectedEvent.name} - Image`}
               className="max-w-[90vw] max-h-[90vh] rounded-lg"
             />
-            <button
-              onClick={showNextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-40 text-white text-3xl font-bold rounded-full h-10 w-10 flex items-center justify-center cursor-pointer"
-            >
-              &#10095;
-            </button>
           </div>
         </div>
       )}
