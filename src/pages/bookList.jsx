@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import WordPullUp from "@/components/ui/word-pull-up";
 import { Download } from "lucide-react";
 import prePrimary from "@/assets/pdf/books/Pre-Primary-Session-2025-26.pdf";
-import grade1to12 from "@/assets/pdf/books/Grade-1-to-12-Session-2025-26.pdf";
+import grade1to12 from "@/assets/pdf/books/Grade-1-to-12-Session-2025-26.xlsx?url";
 import vendorList from "@/assets/pdf/books/Vendor-List.jpg";
 
 const books = [
