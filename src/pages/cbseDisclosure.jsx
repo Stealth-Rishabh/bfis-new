@@ -18,6 +18,8 @@ import fireSafety from "@/assets/pdf/cbseDisclosure/Punjab-Fire-Services-1_page-
 import deoCertificate from "@/assets/pdf/cbseDisclosure/DEO-CERTIFICATE.pdf";
 import waterHealthSanitisation from "@/assets/pdf/cbseDisclosure/WATER-HEALTH-AND-SANITATION-CERTIFICATE.pdf";
 import annualCalendar from "@/assets/pdf/cbseDisclosure/Annual-Calender.pdf";
+
+import result202425 from "@/assets/pdf/cbseDisclosure/Result-2024-25.pdf";
 import smc from "@/assets/pdf/cbseDisclosure/SMC-min-scaled.jpg";
 import parentsTeacherAssociation from "@/assets/pdf/cbseDisclosure/4-scaled.jpg";
 import schoolLeavingCertificate from "@/assets/pdf/cbseDisclosure/SLC-min-scaled.jpg";
@@ -77,6 +79,10 @@ const mainMenu = [
       {
         label: "Annual Calendar",
         url: annualCalendar,
+      },
+      {
+        label: "Result 2024-25",
+        url: result202425,
       },
       {
         label: "School Management Committee",

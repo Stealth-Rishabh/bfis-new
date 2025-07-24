@@ -60,8 +60,45 @@ import NewsletterOct2022 from "@/assets/pdf/newsletter/2022/BFIS-NEWLETTER-OCTOB
 import NewsletterNov2022 from "@/assets/pdf/newsletter/2022/BFIS-NEWLETTER-NOVEMBER-2022.pdf";
 import NewsletterDec2022 from "@/assets/pdf/newsletter/2022/BFIS-NEWSLETTER-DECEMBER-2022.pdf";
 
+// Import 2025 newsletters
+import NewsletterMar2025 from "@/assets/pdf/newsletter/2025/BFIS NEWSLETTER MARCH 2024-25.pdf";
+import NewsletterAprJr2025 from "@/assets/pdf/newsletter/2025/01- BFIS JR. NEWSLETTER APRIL 2025.pdf";
+import NewsletterAprSr2025 from "@/assets/pdf/newsletter/2025/02- BFIS SR. NEWSLETTER APRIL 2025.pdf";
+import NewsletterMayJr2025 from "@/assets/pdf/newsletter/2025/03- BFIS JR. NEWSLETTER MAY 2025.pdf";
+import NewsletterMaySr2025 from "@/assets/pdf/newsletter/2025/04- BFIS SR. NEWSLETTER MAY 2025.pdf";
+import NewsletterJun2025 from "@/assets/pdf/newsletter/2025/05- BFIS NEWSLETTER JUNE 2025.pdf";
+
 // Main Menu and Submenu Data
 const mainMenu = [
+  {
+    label: "E-Newsletter 2025",
+    submenu: [
+      {
+        label: "March 2024-25",
+        url: NewsletterMar2025,
+      },
+      {
+        label: "April 2025 (JR)",
+        url: NewsletterAprJr2025,
+      },
+      {
+        label: "April 2025 (SR)",
+        url: NewsletterAprSr2025,
+      },
+      {
+        label: "May 2025 (JR)",
+        url: NewsletterMayJr2025,
+      },
+      {
+        label: "May 2025 (SR)",
+        url: NewsletterMaySr2025,
+      },
+      {
+        label: "June 2025",
+        url: NewsletterJun2025,
+      },
+    ],
+  },
   {
     label: "E-Newsletter 2024",
     submenu: [
