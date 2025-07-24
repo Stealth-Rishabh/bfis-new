@@ -17,7 +17,6 @@ import buildingSafety from "@/assets/pdf/cbseDisclosure/building-safet-certifica
 import fireSafety from "@/assets/pdf/cbseDisclosure/Punjab-Fire-Services-1_page-0001.pdf";
 import deoCertificate from "@/assets/pdf/cbseDisclosure/DEO-CERTIFICATE.pdf";
 import waterHealthSanitisation from "@/assets/pdf/cbseDisclosure/WATER-HEALTH-AND-SANITATION-CERTIFICATE.pdf";
-import feeStructure from "@/assets/pdf/cbseDisclosure/Fee-Structure-Session-2024-25.pdf";
 import annualCalendar from "@/assets/pdf/cbseDisclosure/Annual-Calender.pdf";
 import smc from "@/assets/pdf/cbseDisclosure/SMC-min-scaled.jpg";
 import parentsTeacherAssociation from "@/assets/pdf/cbseDisclosure/4-scaled.jpg";
@@ -75,10 +74,6 @@ const mainMenu = [
   {
     label: "Results & Academics",
     submenu: [
-      {
-        label: "Fee Structure",
-        url: feeStructure,
-      },
       {
         label: "Annual Calendar",
         url: annualCalendar,

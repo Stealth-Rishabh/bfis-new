@@ -7,7 +7,7 @@ import apple from "@/assets/images/shapes/apple.svg";
 import scissors from "@/assets/images/shapes/scissors.svg";
 import ScrollUp from "../components/sections/footers/scrollUp";
 import SlideUp from "@/lib/animations/slideUp";
-import feeStructure from "@/assets/pdf/cbseDisclosure/Fee-Structure-Session-2024-25.pdf";
+import feeStructure from "@/assets/pdf/cbseDisclosure/Fee_structure_2025-26.jpg";
 import CallUsStrip from "@/components/sections/footers/CallUsStrip";
 import React, { useState, useEffect } from "react";
 import EnquiryPopup from "@/components/EnquiryPopup";

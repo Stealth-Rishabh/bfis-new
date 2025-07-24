@@ -26,7 +26,11 @@ const Drawer = () => {
     { name: "Programs", path: "/program" },
     { name: "Admissions", path: "/admission" },
     { name: "Glimpse", path: "/glimpse" },
-    { name: "Events", path: "/events" },
+    {
+      name: "Highlights",
+      path: "/events",
+      dropdown: [{ name: "Events", path: "/events" }],
+    },
     { name: "Contact Us", path: "/contact-us" },
   ];
 

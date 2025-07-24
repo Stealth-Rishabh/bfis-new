@@ -23,6 +23,10 @@ export default function ContactFormModal({ setIsOpen }) {
 
   const navigate = useNavigate();
 
+  const [isOpen, setIsOpenState] = useState(() => {
+    return !localStorage.getItem("formShown");
+  });
+
   const validateParentName = (name) => {
     const nameRegex = /^[A-Za-z\s]+$/;
     if (!nameRegex.test(name)) {

@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Input from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import EventForm from "./EventForm";
+import NewsCoverageForm from "./NewsCoverageForm";
 
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState("events");
@@ -39,9 +40,9 @@ const AdminPanel = () => {
           Gallery
         </Button>
         <Button
-          onClick={() => setActiveTab("gallery")}
+          onClick={() => setActiveTab("newsCoverage")}
           className={`w-full h-10 mb-2 px-3 py-2 text-base text-white ${
-            activeTab === "gallery"
+            activeTab === "newsCoverage"
               ? "bg-[#242B3C]"
               : "bg-[#121F3D] hover:bg-[#242B3C]"
           } transition-colors`}
@@ -62,15 +63,13 @@ const AdminPanel = () => {
         <Card className="shadow-lg">
           <CardHeader>
             <CardTitle className="text-2xl">
-              {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Section
+              {activeTab === "events" && "Events Section"}
+              {activeTab === "newsCoverage" && "News Coverage Section"}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {activeTab === "events" ? (
-              <EventForm />
-            ) : (
-              <p>Manage your gallery here.</p>
-            )}
+            {activeTab === "events" && <EventForm />}
+            {activeTab === "newsCoverage" && <NewsCoverageForm />}
           </CardContent>
         </Card>
       </div>

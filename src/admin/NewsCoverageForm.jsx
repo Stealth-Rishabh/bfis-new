@@ -5,22 +5,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { format, parse } from "date-fns";
-import { CalendarIcon, Upload, X } from "lucide-react";
+import { Upload, X } from "lucide-react";
 import { toast } from "sonner";
 
-export default function EventForm() {
+export default function NewsCoverageForm() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(new Date());
   const [featureImage, setFeatureImage] = useState(null);
-  const [eventImages, setEventImages] = useState([]);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [newsCoverageImages, setNewsCoverageImages] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dateInput, setDateInput] = useState(format(new Date(), "yyyy-MM-dd"));
 
@@ -39,11 +32,10 @@ export default function EventForm() {
     }
   };
 
-  const handleEventImagesChange = (e) => {
+  const handleNewsCoverageImagesChange = (e) => {
     const files = Array.from(e.target.files);
 
-    // Check if adding new files would exceed the 50 image limit
-    if (eventImages.length + files.length > 50) {
+    if (newsCoverageImages.length + files.length > 50) {
       toast.error("You can only upload up to 50 images in total");
       return;
     }
@@ -60,27 +52,27 @@ export default function EventForm() {
       return true;
     });
 
-    // Show warning when approaching the limit
-    if (eventImages.length + validFiles.length >= 40) {
+    if (newsCoverageImages.length + validFiles.length >= 40) {
       toast.warning(
         `You have ${
-          50 - (eventImages.length + validFiles.length)
+          50 - (newsCoverageImages.length + validFiles.length)
         } slots remaining`
       );
     }
 
-    setEventImages((prev) => [...prev, ...validFiles]);
+    setNewsCoverageImages((prev) => [...prev, ...validFiles]);
   };
 
-  const removeEventImage = (index) => {
-    setEventImages((prev) => prev.filter((_, i) => i !== index));
+  const removeNewsCoverageImage = (index) => {
+    setNewsCoverageImages((prev) => prev.filter((_, i) => i !== index));
   };
 
   const resetForm = () => {
     setTitle("");
     setDate(new Date());
     setFeatureImage(null);
-    setEventImages([]);
+    setNewsCoverageImages([]);
+    setDateInput(format(new Date(), "yyyy-MM-dd"));
   };
 
   const handleDateInput = (e) => {
@@ -88,7 +80,6 @@ export default function EventForm() {
     setDateInput(input);
 
     try {
-      // Parse the input date string to a Date object
       const parsedDate = parse(input, "yyyy-MM-dd", new Date());
       if (parsedDate instanceof Date && !isNaN(parsedDate)) {
         setDate(parsedDate);
@@ -103,7 +94,7 @@ export default function EventForm() {
     setIsSubmitting(true);
 
     if (!title.trim()) {
-      toast.error("Please enter an event title");
+      toast.error("Please enter a news coverage title");
       setIsSubmitting(false);
       return;
     }
@@ -117,29 +108,28 @@ export default function EventForm() {
     try {
       const formData = new FormData();
       formData.append("title", title);
-      formData.append("event_date", dateInput);
+      formData.append("date", dateInput);
       formData.append("feature_image", featureImage);
-      eventImages.forEach((file) => {
-        formData.append("event_images", file);
+      newsCoverageImages.forEach((file) => {
+        formData.append("news_coverage_images", file);
       });
 
-      const response = await fetch("/api/events", {
+      const response = await fetch("/api/news-coverage", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to upload event");
+        throw new Error(errorData.error || "Failed to upload news coverage");
       }
 
       const data = await response.json();
-      console.log("Success:", data);
-      toast.success("Event created successfully!");
+      toast.success("News coverage created successfully!");
       resetForm();
     } catch (error) {
       console.error("Error details:", error);
-      toast.error(error.message || "Failed to create event");
+      toast.error(error.message || "Failed to create news coverage");
     } finally {
       setIsSubmitting(false);
     }
@@ -151,29 +141,29 @@ export default function EventForm() {
         <Card className="shadow-sm">
           <CardHeader>
             <CardTitle className="text-xl font-semibold">
-              Create New Event
+              Create New News Coverage
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            {/* Event Title */}
+            {/* News Coverage Title */}
             <div className="space-y-2">
-              <Label htmlFor="title">Event Title</Label>
+              <Label htmlFor="title">News Coverage Title</Label>
               <Input
                 id="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Enter event title"
+                placeholder="Enter news coverage title"
                 required
                 disabled={isSubmitting}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
               />
             </div>
 
-            {/* Event Date */}
+            {/* News Coverage Date */}
             <div className="space-y-2">
-              <Label htmlFor="eventDate">Event Date</Label>
+              <Label htmlFor="newsCoverageDate">News Coverage Date</Label>
               <Input
-                id="eventDate"
+                id="newsCoverageDate"
                 type="date"
                 value={dateInput}
                 onChange={handleDateInput}
@@ -203,7 +193,7 @@ export default function EventForm() {
                   <div className="flex flex-col items-center gap-2">
                     <Upload className="h-8 w-8 text-gray-400" />
                     <span className="text-sm text-gray-600">
-                      Upload feature image (max 10MB)
+                      Upload feature image (max 5MB)
                     </span>
                   </div>
                 </Label>
@@ -227,50 +217,52 @@ export default function EventForm() {
               </div>
             </div>
 
-            {/* Event Images Upload */}
+            {/* News Coverage Images Upload */}
             <div className="space-y-2">
-              <Label>Event Images (Max 50)</Label>
+              <Label>News Coverage Images (Max 50)</Label>
               <div className="border-2 border-dashed border-gray-200 rounded-lg p-4">
                 <input
                   type="file"
-                  id="eventImages"
+                  id="newsCoverageImages"
                   className="hidden"
                   accept="image/*"
                   multiple
-                  onChange={handleEventImagesChange}
-                  disabled={isSubmitting || eventImages.length >= 50}
+                  onChange={handleNewsCoverageImagesChange}
+                  disabled={isSubmitting || newsCoverageImages.length >= 50}
                 />
                 <Label
-                  htmlFor="eventImages"
+                  htmlFor="newsCoverageImages"
                   className={`cursor-pointer ${
-                    isSubmitting || eventImages.length >= 50 ? "opacity-50" : ""
+                    isSubmitting || newsCoverageImages.length >= 50
+                      ? "opacity-50"
+                      : ""
                   }`}
                 >
                   <div className="flex flex-col items-center gap-2">
                     <Upload className="h-8 w-8 text-gray-400" />
                     <span className="text-sm text-gray-600">
-                      Upload event images (max 5MB each)
-                      {eventImages.length > 0 && (
+                      Upload news coverage images (max 5MB each)
+                      {newsCoverageImages.length > 0 && (
                         <span className="block mt-1">
-                          {eventImages.length}/50 images uploaded
+                          {newsCoverageImages.length}/50 images uploaded
                         </span>
                       )}
                     </span>
                   </div>
                 </Label>
               </div>
-              {eventImages.length > 0 && (
+              {newsCoverageImages.length > 0 && (
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-                  {eventImages.map((image, index) => (
+                  {newsCoverageImages.map((image, index) => (
                     <div key={index} className="relative">
                       <img
                         src={URL.createObjectURL(image)}
-                        alt={`Event ${index + 1}`}
+                        alt={`News Coverage ${index + 1}`}
                         className="w-full h-32 object-cover rounded-lg"
                       />
                       <button
                         type="button"
-                        onClick={() => removeEventImage(index)}
+                        onClick={() => removeNewsCoverageImage(index)}
                         className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
                         disabled={isSubmitting}
                       >
@@ -288,7 +280,9 @@ export default function EventForm() {
               className="w-full h-10 bg-[#0F172A] hover:bg-[#1E293B] text-white disabled:opacity-50"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Creating Event..." : "Create Event"}
+              {isSubmitting
+                ? "Creating News Coverage..."
+                : "Create News Coverage"}
             </Button>
           </CardContent>
         </Card>

@@ -38,6 +38,7 @@ import Header from "@/components/header/Header";
 import Footer from "@/components/footer";
 import ThankYou from "../pages/thankyou";
 import NewsCoverage from "../pages/NewsCoverage";
+import NewsCoverageForm from "@/admin/NewsCoverageForm";
 
 // Sidebar links for About section
 const aboutSidebarLinks = [
@@ -86,6 +87,19 @@ export const router = createBrowserRouter(
         ) : (
           <Navigate to="/login" replace />
         ),
+      children: [
+        {
+          path: "news-coverage",
+          element: (
+            <>
+              <Helmet>
+                <title>Admin - News Coverage</title>
+              </Helmet>
+              <NewsCoverageForm />
+            </>
+          ),
+        },
+      ],
     },
 
     // Main website routes (with Header/Footer)
@@ -463,10 +477,10 @@ export const router = createBrowserRouter(
           element: (
             <>
               <Helmet>
-                <title>News Coverage | BFIS Chandigarh</title>
+                <title>News Coverage | BFIS</title>
                 <meta
                   name="description"
-                  content="Discover how Brookfield International School is making headlines and impacting our community through excellence in education and innovative programs."
+                  content="Read the latest news and media coverage about Brookfield International School (BFIS), the best school in the Chandigarh region."
                 />
               </Helmet>
               <NewsCoverage />
@@ -647,10 +661,10 @@ export const hashRouter = createHashRouter(
           element: (
             <>
               <Helmet>
-                <title>News Coverage | BFIS Chandigarh</title>
+                <title>News Coverage | BFIS</title>
                 <meta
                   name="description"
-                  content="Discover how Brookfield International School is making headlines and impacting our community through excellence in education and innovative programs."
+                  content="Read the latest news and media coverage about Brookfield International School (BFIS), the best school in the Chandigarh region."
                 />
               </Helmet>
               <NewsCoverage />

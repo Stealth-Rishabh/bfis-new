@@ -180,7 +180,7 @@ export default function EventsGallery() {
                 <CardContent className="p-4 flex flex-col flex-grow">
                   <div className="flex-grow">
                     <img
-                      src={`https://www.bfis.in${event.thumbnail}`}
+                      src={`https://www.bfis.in/api/uploads/${event.thumbnail}`}
                       alt={event.name}
                       className="w-full h-48 object-cover rounded-md mb-2"
                     />
@@ -221,7 +221,7 @@ export default function EventsGallery() {
               {selectedEvent.images.map((image, index) => (
                 <img
                   key={image}
-                  src={`https://www.bfis.in${image}`}
+                  src={`https://www.bfis.in/api/uploads/${image}`}
                   alt={`${selectedEvent.name} - Image`}
                   className="w-full h-48 object-cover rounded-md cursor-pointer"
                   onClick={() => openLightbox(index)}
@@ -249,7 +249,7 @@ export default function EventsGallery() {
               &#10094;
             </button>
             <img
-              src={`https://www.bfis.in${selectedEvent.images[lightboxIndex]}`}
+              src={`https://www.bfis.in/api/uploads/${selectedEvent.images[lightboxIndex]}`}
               alt={`${selectedEvent.name} - Image`}
               className="max-w-[90vw] max-h-[90vh] rounded-lg"
             />
