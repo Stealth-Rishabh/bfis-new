@@ -71,9 +71,7 @@ export default function EventsGallery() {
     const fetchEvents = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          "https://www.bfis.in/api/gallery-events"
-        );
+        const response = await axios.get("/api/gallery-events");
 
         // Sort events by date in descending order (latest first)
         const sortedEvents = response.data.events.sort((a, b) => {
@@ -253,12 +251,6 @@ export default function EventsGallery() {
               alt={`${selectedEvent.name} - Image`}
               className="max-w-[90vw] max-h-[90vh] rounded-lg"
             />
-            <button
-              onClick={showNextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-40 text-white text-3xl font-bold rounded-full h-10 w-10 flex items-center justify-center cursor-pointer"
-            >
-              &#10095;
-            </button>
           </div>
         </div>
       )}
